@@ -68,25 +68,15 @@ const Progress = styled.div`
   color: #111;
 `;
 const Timer = styled.div`
-  width: 38px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 35px;
-  /* text 관련 css */
-  color: var(---, #fdfdfd);
-  text-align: center;
-  font-family: DNF Bit Bit v2;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-shadow:
-    -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-    2px 2px 0 #000;
+  margin-left: 30px;
 `;
 const TopWrapper = styled.div`
   display: flex;
