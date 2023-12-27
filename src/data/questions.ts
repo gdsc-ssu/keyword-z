@@ -18,6 +18,7 @@ const question = [
         ans: "장충동 왕족발 보쌈",
         difficulty:"*",
 
+
     },
     {
         id:2,
@@ -26,6 +27,7 @@ const question = [
         options:["짝","하트 시그널","나는 솔로","금쪽같은 내 새끼"],
         ans:"나는 솔로",
         difficulty:"*",
+
     },
     {
         id:3,
@@ -33,7 +35,9 @@ const question = [
         img: Q3,
         options:["고광서","이정민","최서현","유재석"],
         ans:"유재석",
+
         difficulty:"**",
+
     },
     {
         id:4,
@@ -42,6 +46,7 @@ const question = [
         options:["삿갓","God(신)","Good의 줄임말","Got(얻다)"],
         ans:"God(신)",
         difficulty:"**",
+
     },
     {
         id:5,
@@ -58,6 +63,7 @@ const question = [
         options:["분위기 좋은 카드","분위기 좋은 카메라 어플","분위기 좋은 카레 맛집","분위기 좋은 카페"],
         ans:"분위기 좋은 카페",
         difficulty:"***",
+        
     },
     {
         id:7,
@@ -74,6 +80,7 @@ const question = [
         options:["아는 형님","아는 중곤","아는 동생","아는 누나"],
         ans:"아는 중곤",
         difficulty:"***",
+
     },
     {
         id:9,
@@ -82,6 +89,7 @@ const question = [
         options:["비상이다","큰일이다","대박이다","감동이다"],
         ans:"비상이다",
         difficulty:"****",
+
     },
     {
         id:10,
@@ -98,4 +106,8 @@ const question = [
 
 export default question;
 
+    },
+
+ 
+]
 

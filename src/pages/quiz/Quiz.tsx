@@ -38,6 +38,7 @@ const Title = styled.h2`
   font-family: DNF Bit Bit v2;
   font-size: 1.2rem;
   margin-left: 2rem;
+
 `;
 const SpecialText = styled.span`
   color: var(---, #9cff00);
@@ -159,7 +160,6 @@ const CustomButton = styled.button`
 
   font-weight: 900;
   line-height: normal;
-
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -224,7 +224,6 @@ export default function Quiz() {
       }, 300);
     }
   };
-
   const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedAnswer = event.target.value;
     const correctAnswer = question[currentQuestionIndex].ans;
