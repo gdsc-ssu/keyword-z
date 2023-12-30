@@ -40,7 +40,6 @@ const HomeWrap = styled.div`
     width: 339px;
     height: 160px;
     flex-shrink: 0;
-    margin-top: 110px;
   }
   .title {
     color: #fff;

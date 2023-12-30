@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+
 import styled from 'styled-components';
 import MobileFrame from '../../components/moblieFrame';
 import question from '../../data/questions';
@@ -35,6 +37,8 @@ const Title = styled.h2`
   text-shadow: 4px 4px 3px rgba(255, 255, 255, 0.5);
   font-family: DNF Bit Bit v2;
   font-size: 1.2rem;
+  margin-left: 2rem;
+
 `;
 const SpecialText = styled.span`
   color: var(---, #9cff00);
@@ -61,22 +65,32 @@ const ProgressBar = styled.div`
 
 const Progress = styled.div`
   width: ${(props: ITest) => props.width}%;
-  height: 12px;
+  height: 10px;
   padding: 0;
   text-align: center;
   background-color: #9cff00;
   color: #111;
 `;
 const Timer = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid #ffffff;
-  color: black;
+  width: 38px;
+  height: 17px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 30px;
+  margin-left: 35px;
+  /* text 관련 css */
+  color: #fdfdfd;
+  text-align: center;
+  font-family: DNF Bit Bit v2;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
 `;
 const TopWrapper = styled.div`
   display: flex;
@@ -88,7 +102,7 @@ const Difficulty = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 180px;
+  width: 200px;
   height: 30px;
   color: #fff;
   font-weight: bold;
@@ -136,10 +150,16 @@ const Aoption = styled.label`
 `;
 const RadioInput = styled.input``;
 const CustomButton = styled.button`
-  width: 200px;
+  width: 300px;
   background-color: #ffffff;
   color: black;
-  font-weight: 400;
+
+  text-align: center;
+  font-family: DNF Bit Bit v2;
+  font-size: 20px;
+
+  font-weight: 900;
+  line-height: normal;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -152,20 +172,28 @@ const CustomButton = styled.button`
 `;
 
 export default function Quiz() {
+  const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState('');
+
   const [correctAnswersCount, setCorrectAnswersCount] = useState(1);
   const [time, setTime] = useState(20);
-  const [isButtonDisabled, setButtonDisabled] = useState(false); // State to control button disable
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
   const maxItem = 10;
 
   const availableItem = currentQuestionIndex + 1;
   const getSeconds = (time) => {
     const seconds = Number(time % 60);
-    if (seconds < 10) {
+    if (seconds <= 0 && currentQuestionIndex === 9) {
+      // alert('결과로 넘어갑니다.');
+    } else if (seconds < 10) {
       return '0' + String(seconds);
     } else {
       return String(seconds);
+    }
+  };
+  const checkQuizCompletion = () => {
+    if (currentQuestionIndex === question.length - 1) {
+      alert(`퀴즈가 끝났습니다. 정답 갯수: ${correctAnswersCount}`);
     }
   };
 
@@ -176,18 +204,17 @@ export default function Quiz() {
     return () => {
       clearInterval(timer);
 
-      if (time === 0 && currentQuestionIndex < question.length - 1) {
+      if (time <= 0 && currentQuestionIndex <= question.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setSelectedOption('');
         setTime(20);
-      } else if (currentQuestionIndex === 10) {
-        console.log('Quiz completed!');
+        checkQuizCompletion();
+      } else if (time <= 0 && currentQuestionIndex === question.length - 1) {
+        checkQuizCompletion();
       }
     };
-  });
+  }, [currentQuestionIndex, time]);
 
-  const handleAnswerClick = (option) => {
-    setSelectedOption(option);
+  const handleAnswerClick = () => {
     if (!isButtonDisabled) {
       setButtonDisabled(true);
       setTimeout(() => {
@@ -197,28 +224,33 @@ export default function Quiz() {
       }, 300);
     }
   };
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedAnswer = event.target.value;
+    const correctAnswer = question[currentQuestionIndex].ans;
+    // 정답 갯수를 반환 받아서 나중에 지표로 사용할 듯
 
-  const handleRadioChange = (event) => {
-    if (question[currentQuestionIndex].ans === event.target.value) {
-      setCorrectAnswersCount(correctAnswersCount + 1);
-      console.log(correctAnswersCount);
-    } else {
-      console.log('wrong');
+    if (selectedAnswer === correctAnswer) {
+      setCorrectAnswersCount((prevCount) => prevCount + 1);
+      console.log(correctAnswer);
     }
   };
   const handleBackClick = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
-      setSelectedOption('');
+
       setTime(20);
       setButtonDisabled(false);
     } else {
-      // 첫번째 문제에서는 뒤로 돌아 갈 수 없으니까
+      navigate('/');
     }
   };
-  const currentQuestion = question[currentQuestionIndex];
 
-  const { title, img, options } = currentQuestion;
+  const currentQuestion = question[currentQuestionIndex];
+  if (!currentQuestion) {
+    alert(`퀴즈가 끝났습니다. 정답 갯수: ${correctAnswersCount}`);
+    return navigate('/');
+  }
+  const { title, img, options, difficulty } = currentQuestion;
 
   return (
     <MobileFrame>
@@ -233,7 +265,9 @@ export default function Quiz() {
           <Progress width={(availableItem * 100) / maxItem} />
         </ProgressBar>
         <TopWrapper>
-          <Difficulty>Stage {currentQuestionIndex + 1} 난이도</Difficulty>
+          <Difficulty>
+            Stage {currentQuestionIndex + 1} 난이도 {difficulty}
+          </Difficulty>
           <Timer>{getSeconds(time)}</Timer>
         </TopWrapper>
         <Qtitle>{title}</Qtitle>
@@ -241,14 +275,13 @@ export default function Quiz() {
         <Answers>
           {options.map((option, index) => (
             <Aoption key={index}>
-              <RadioInput type="radio" name="answer" />
-
-              <CustomButton
-                onClick={() => handleAnswerClick(option)}
-                disabled={isButtonDisabled}
+              <RadioInput
+                type="radio"
+                name="answer"
                 value={option}
-                onChange={handleRadioChange}
-              >
+                onChange={(event) => handleRadioChange(event, index)}
+              />
+              <CustomButton disabled={isButtonDisabled} value={option} onClick={handleAnswerClick}>
                 {option}
               </CustomButton>
             </Aoption>

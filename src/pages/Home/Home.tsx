@@ -1,4 +1,5 @@
-//메인 홈 페이지
+// 메인 홈 페이지
+
 
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
