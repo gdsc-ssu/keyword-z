@@ -11,7 +11,7 @@ const MobileFrame: React.FC<FrameProps> = ({ children, ...props }) => {
 };
 
 const Container = styled.div`
-  max-width: 425px;
+  max-width: 450px;
   width: 100%;
   min-height: 100vh;
   margin-left: auto;
