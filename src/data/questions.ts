@@ -25,7 +25,7 @@ const question = [
         title:"2. 시그널하우스에서 펼쳐지는 연애를 관찰하고 최종 커플을 추리하는 예능 프로그램은?",
         img: Q2,
         options:["짝","하트 시그널","나는 솔로","금쪽같은 내 새끼"],
-        ans:"나는 솔로",
+        ans:"하트 시그널",
         difficulty:"*",
 
     },
@@ -105,9 +105,4 @@ const question = [
 
 
 export default question;
-
-    },
-
- 
-]
 
