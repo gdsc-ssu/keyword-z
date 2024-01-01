@@ -1,69 +1,39 @@
 // 메인 홈 페이지
 
-
-import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import MobileFrame from '../../components/moblieFrame';
-import Logo from '../../assets/logo/Logo-Vector.png';
-import lottie from 'lottie-web';
-import cat from '../../assets/Anim/cat.json';
 import { useNavigate } from 'react-router-dom';
-import HomeWrap from './HomeWrap';
+import Lottie from 'lottie-react';
+import catAnimation from '../../assets/Anim/cat_2.json';
+import Logo from '../../assets/logo/Logo-Vector.png';
 
-export default function Home() {
-  const catAnimation = useRef(null);
-  const navigate = useNavigate();
+const HomeContainer = styled.div`
+  max-width: 450px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ff58b8;
+  padding: 0 20px;
+  margin: 0 auto;
+`;
 
-  useEffect(() => {
-    if (catAnimation.current) {
-      const anim = lottie.loadAnimation({
-        container: catAnimation.current,
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        animationData: cat,
-      });
+const LogoImage = styled.img`
+  align-self: flex-end;
+  width: 55px;
+  height: 28px;
+  margin-top: 25px;
+`;
 
-      return () => anim.destroy();
-    }
-  }, []);
+const TitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+`;
 
-  const goToQuiz = () => {
-    navigate('/quiz');
-  };
-
-  return (
-    <>
-      <MobileFrame>
-        <HomeWrap>
-          <div className="header-container">
-            <img className="logo-img" src={Logo} />
-          </div>
-          <div className="title-container">
-            <p className="title">
-              2023 <SpecialText>MZ</SpecialText>
-              <br />
-              트렌드 능력고사
-            </p>
-          </div>
-          <div className="anim-container">
-            <div className="anim-cat" ref={catAnimation} />
-            <div className="start-button" onClick={goToQuiz}>
-              <p className="start-text">시작하기</p>
-            </div>
-          </div>
-          <div className="bottom-container">
-            <p className="visits-text">방문자수 | 1234</p>
-          </div>
-        </HomeWrap>
-      </MobileFrame>
-    </>
-  );
-}
-
-const SpecialText = styled.span`
-  color: var(---, #9cff00);
-  font-family: 'DNF Bit Bit v2';
+const Title = styled.p`
+  color: #fff;
+  text-shadow: 4px 4px 3px rgba(255, 255, 255, 0.5);
+  font-family: DNFBitBitv2;
   font-size: 45px;
   font-style: normal;
   font-weight: 400;
@@ -71,3 +41,84 @@ const SpecialText = styled.span`
   stroke-width: 2px;
   stroke: #000;
 `;
+
+const SpecialText = styled.span`
+  color: var(---, #9cff00);
+  font-family: 'DNFBitBitv2';
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  stroke-width: 2px;
+  stroke: #000;
+`;
+
+const StyledLottie = styled(Lottie)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+`;
+
+const BottomContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+`;
+
+const StartButton = styled.button`
+  width: 350px;
+  height: 72px;
+  border-radius: 12px;
+  border: 3px solid #fff;
+  z-index: 2;
+  color: var(---, #9cff00);
+  text-align: center;
+  font-family: DNFBitBitv2;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 20px;
+`;
+
+const VisitorText = styled.p`
+  margin-bottom: 20px;
+  color: #fff;
+  font-family: DNFBitBitv2;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  z-index: 2;
+`;
+
+export default function Home() {
+  const navigate = useNavigate();
+
+  const goToQuiz = () => {
+    navigate('/quiz');
+  };
+
+  return (
+    <HomeContainer>
+      <LogoImage src={Logo} alt="logo" />
+      <TitleContainer>
+        <Title>
+          2023 <SpecialText>MZ</SpecialText>
+          <br />
+          트렌드 능력고사
+        </Title>
+      </TitleContainer>
+      <StyledLottie animationData={catAnimation} loop />
+      <BottomContainer>
+        <StartButton onClick={goToQuiz}>시작하기</StartButton>
+        <VisitorText>방문자수|1234</VisitorText>
+      </BottomContainer>
+    </HomeContainer>
+  );
+}
