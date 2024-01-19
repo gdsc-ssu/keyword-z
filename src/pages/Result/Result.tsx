@@ -9,7 +9,6 @@ const ResultContainer = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
   margin: 0 auto;
 `;
 
