@@ -22,12 +22,12 @@ const Title = styled.h2`
   margin-top: 1.5rem;
   color: #fff;
   text-shadow: 4px 4px 3px rgba(255, 255, 255, 0.5);
-  font-family: DNF Bit Bit v2;
+  font-family: DNFBitBitv2;
   font-size: 1.2rem;
 `;
 const SpecialText = styled.span`
   color: var(---, #9cff00);
-  font-family: 'DNF Bit Bit v2';
+  font-family: 'DNFBitBitv2';
   font-size: 1.2rem;
   font-style: normal;
   line-height: normal;
@@ -66,7 +66,7 @@ const Timer = styled.div`
   /* text 관련 css */
   color: #fdfdfd;
   text-align: center;
-  font-family: DNF Bit Bit v2;
+  font-family: DNFBitBitv2;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -92,7 +92,7 @@ const Difficulty = styled.div`
   height: 30px;
   color: #fff;
   font-weight: bold;
-  font-family: DNF Bit Bit v2;
+  font-family: DNFBitBitv2;
   font-size: 1.2rem;
   padding-left: 100px;
 `;
@@ -112,7 +112,7 @@ const Qtitle = styled.div`
   padding-bottom: 30px;
   color: #fff;
   font-weight: bold;
-  font-family: DNF Bit Bit v2;
+  font-family: DNFBitBitv2;
   font-size: 1.2rem;
 `;
 
@@ -154,7 +154,7 @@ const CustomButton = styled.button`
   background-color: #ffffff;
   color: black;
   text-align: center;
-  font-family: DNF Bit Bit v2;
+  font-family: DNFBitBitv2;
   font-size: 20px;
   font-weight: 900;
   line-height: normal;
@@ -200,7 +200,7 @@ export default function Quiz() {
     //   console.log('오답입니다.');
     // }
     if (currentQuestionIndex === question.length - 1) {
-      navigate('/');
+      navigate(`/result/${correctAnswersCount}`);
     } else {
       setTimeout(() => {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
