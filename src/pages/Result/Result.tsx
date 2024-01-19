@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import getResultLevel from '../../utils/getResultLevel';
 import Rotate from '../../assets/result/rotate.png';
@@ -205,9 +205,14 @@ const RotateImage = styled.img`
 `;
 
 function Result() {
+  const navigate = useNavigate();
   const { count } = useParams();
   const level = getResultLevel(Number(count));
   const { contentText, levelText, image } = getResultContentText(level);
+
+  const handleClickRestart = () => {
+    navigate('/quiz', { replace: true });
+  };
 
   return (
     <ResultContainer>
@@ -228,7 +233,7 @@ function Result() {
           <LevelContentText>{levelText}</LevelContentText>
         </ImageContainer>
         <ButtonContainer>
-          <Button>테스트 다시하기</Button>
+          <Button onClick={handleClickRestart}>테스트 다시하기</Button>
           <RotateImage src={Rotate} />
         </ButtonContainer>
       </ContentContainer>
