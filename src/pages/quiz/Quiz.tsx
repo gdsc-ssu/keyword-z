@@ -200,7 +200,7 @@ export default function Quiz() {
     //   console.log('오답입니다.');
     // }
     if (currentQuestionIndex === question.length - 1) {
-      navigate('/');
+      navigate(`/result/${correctAnswersCount}`);
     } else {
       setTimeout(() => {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
