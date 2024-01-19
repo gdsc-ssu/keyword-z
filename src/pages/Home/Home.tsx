@@ -32,7 +32,12 @@ const TitleContainer = styled.div`
 
 const Title = styled.p`
   color: #fff;
-  text-shadow: 4px 4px 3px rgba(255, 255, 255, 0.5);
+  text-shadow:
+    -2px 0 black,
+    0 2px black,
+    2px 0 black,
+    0 -2px black,
+    4px 4px 3px rgba(255, 255, 255, 0.5);
   font-family: DNFBitBitv2;
   font-size: 45px;
   font-style: normal;
