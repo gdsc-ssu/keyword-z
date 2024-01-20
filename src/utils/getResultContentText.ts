@@ -1,4 +1,3 @@
-import ResultImage from '../assets/result/result_image.png';
 import MemePhD from '../assets/result/meme_phD.png';
 import Lv5 from '../assets/result/meme_howLove.png';
 import Lv4 from '../assets/result/meme_justDoit.jpg';
