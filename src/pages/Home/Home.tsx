@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import catAnimation from '../../assets/Anim/cat_2.json';
 import Logo from '../../assets/logo/Logo-Vector.png';
+import mainPng from '../../assets/thumbnail.png';
 
 const HomeContainer = styled.div`
   max-width: 450px;
@@ -102,8 +103,31 @@ const VisitorText = styled.p`
   z-index: 2;
 `;
 
+const Thumbnail = styled.p``;
+
 export default function Home() {
   const navigate = useNavigate();
+  // const [visitorCount, setVisitorCount] = useState(0);
+  // const db = getFirestore();
+
+  // // 새 방문자 기록
+  // const recordVisitor = async () => {
+  //   const visitorsRef = collection(db, 'Visitors');
+  //   await addDoc(visitorsRef, { visitedAt: new Date() });
+  // };
+
+  // useEffect(() => {
+  //   // 새 방문자 추가
+  //   recordVisitor();
+
+  //   // 전체 방문자 수 계산
+  //   const q = query(collection(db, 'Visitors'));
+  //   const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //     setVisitorCount(querySnapshot.size);
+  //   });
+
+  //   return () => unsubscribe();
+  // }, [db]);
 
   const goToQuiz = () => {
     navigate('/quiz');
@@ -119,10 +143,11 @@ export default function Home() {
           트렌드 능력고사
         </Title>
       </TitleContainer>
+      <Thumbnail src={mainPng} alt="Thumbnail" />
       <StyledLottie animationData={catAnimation} loop />
       <BottomContainer>
         <StartButton onClick={goToQuiz}>시작하기</StartButton>
-        <VisitorText>방문자수|1234</VisitorText>
+        <VisitorText>방문자수 | 103</VisitorText>
       </BottomContainer>
     </HomeContainer>
   );
