@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import catAnimation from '../../assets/Anim/cat_2.json';
 import Logo from '../../assets/logo/Logo-Vector.png';
-import mainPng from '../../assets/thumbnail.png';
+// import mainPng from '../../assets/thumbnail.png';
 
 const HomeContainer = styled.div`
   max-width: 450px;
@@ -119,7 +119,7 @@ export default function Home() {
           트렌드 능력고사
         </Title>
       </TitleContainer>
-      <img src={mainPng} alt="Thumbnail" />
+      {/* <img src={mainPng} alt="Thumbnail" /> */}
       <StyledLottie animationData={catAnimation} loop />
       <BottomContainer>
         <StartButton onClick={goToQuiz}>시작하기</StartButton>
