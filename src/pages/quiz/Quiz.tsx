@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   background: var(---, #ff58b8);
   width: 100vw;
   height: 100vh;
-
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
