@@ -2,7 +2,7 @@
 <img width="277" alt="2023 트고" src="https://github.com/gdsc-ssu/keyword-z/assets/104755384/03b84bad-5fff-4506-ab6b-57845287dc5e">
 
 - https://keyword-z.vercel.app
-- 짧은 기간 동안 만든 간단한 사이드 프로젝트 입니다 🐈
+- 간단한 사이드 프로젝트 입니다 🐈
 
 ## 사용 스택 🤖
 
