@@ -1,5 +1,5 @@
 # 2023 MZ 트렌드 능력고사
-<img width="277" alt="2023 트고" src="https://github.com/gdsc-ssu/keyword-z/assets/104755384/03b84bad-5fff-4506-ab6b-57845287dc5e">
+<img width="250" alt="2023 트고" src="https://github.com/gdsc-ssu/keyword-z/assets/104755384/03b84bad-5fff-4506-ab6b-57845287dc5e">
 
 - https://keyword-z.vercel.app
 - 간단한 사이드 프로젝트 입니다 🐈
